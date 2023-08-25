@@ -18,8 +18,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
     System.out.println("payload = " + payload);
     System.out.println("session = " + session);
     System.out.println("session = " + session.isOpen());
-//    TextMessage textMessage = new TextMessage("안녕하세요");
-//    session.sendMessage(textMessage);
+
+    if (message.getPayload().equals("안녕하세요")) {
+      TextMessage textMessage = new TextMessage("오~~ 어서 오고");
+      session.sendMessage(textMessage);
+    } else if(message.getPayload().equals("이제 갈게")) {
+      TextMessage textMessage = new TextMessage("어 그래 들어 가고~~");
+      session.sendMessage(textMessage);
+    }
   
   }
   // 클라이언트에서 연결을 시작할 경우 발생하는 이벤트
