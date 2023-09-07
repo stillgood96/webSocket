@@ -32,5 +32,17 @@ public class testMain {
     Child c = new Child();
     c.fn();
     c.fnA();
+    
+    int i=0;
+    int j=0;
+    for(int k=0;k<3;k++) {
+      if ((++i > 1) && (++j > 1)) {
+        i++;
+      }
+    }
+    System.out.println("i = " + i);
+    System.out.println("j = " + j);
+    System.out.println("i + \" \" + j = " + i + " " + j);
+    
   }
 }
