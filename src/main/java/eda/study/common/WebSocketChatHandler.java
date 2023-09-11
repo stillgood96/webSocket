@@ -1,4 +1,4 @@
-package eda.study.websocket;
+package eda.study.common;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,13 +6,10 @@ import eda.study.dto.ChatMessage;
 import eda.study.dto.ChatRoom;
 import eda.study.service.ChatService;
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -22,7 +19,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class WebSocketHandler extends TextWebSocketHandler {
+public class WebSocketChatHandler extends TextWebSocketHandler {
   private final ObjectMapper objectMapper;
   private final ChatService chatService;
   
@@ -32,21 +29,21 @@ public class WebSocketHandler extends TextWebSocketHandler {
   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     String payload = message.getPayload();
     log.info("payload {}", payload);
-//    JSONObject jsonObject = new JSONObject();
-//    jsonObject.put("payload", payload);
-//    System.out.println("jsonObject.toJSONString() = " + jsonObject.toJSONString());
-//
-//    if (message.getPayload().equals("안녕하세요")) {
-//      TextMessage textMessage = new TextMessage("오~~ 어서 오고");
-//      session.sendMessage(textMessage);
-//    } else if(message.getPayload().equals("이제 갈게")) {
-//      TextMessage textMessage = new TextMessage("어 그래 들어 가고~~");
-//      session.sendMessage(textMessage);
-//    }
-//
-//    System.out.println("payload = " + payload);
-//    System.out.println("session = " + session);
-//    System.out.println("session = " + session.isOpen());
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put("payload", payload);
+    System.out.println("jsonObject.toJSONString() = " + jsonObject.toJSONString());
+
+    if (message.getPayload().equals("안녕하세요")) {
+      TextMessage textMessage = new TextMessage("오~~ 어서 오고");
+      session.sendMessage(textMessage);
+    } else if(message.getPayload().equals("이제 갈게")) {
+      TextMessage textMessage = new TextMessage("어 그래 들어 가고~~");
+      session.sendMessage(textMessage);
+    }
+
+    System.out.println("payload = " + payload);
+    System.out.println("session = " + session);
+    System.out.println("session = " + session.isOpen());
     ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
     ChatRoom room = chatService.findRoomById(chatMessage.getRoomId());
     room.handleActions(session, chatMessage, chatService);
@@ -63,8 +60,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //    System.out.println("buckets.size= " + buckets.size());
     
     LocalDateTime localDateTime = LocalDateTime.now();
-    TextMessage textMessage = new TextMessage("안녕하세요 접속 시간은 " + localDateTime);
-    session.sendMessage(textMessage);
+//    TextMessage textMessage = new TextMessage("안녕하세요 접속 시간은 " + localDateTime);
+//    session.sendMessage(textMessage);
   }
   
   // 클라이언트에서 연결을 종료할 경우 발생하는 이벤트
@@ -81,12 +78,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
   
   }
   
-  // - 클라이언트로부터 메세지가 도착하면 실행된다.
+  // 클라이언트로부터 메세지가 도착하면 실행된다.
   @Override
   public void handleMessage(WebSocketSession session, WebSocketMessage<?> message)
     throws Exception {
     super.handleMessage(session, message);
-    
+
     System.out.println("방금 메세지를 보낸 session = " + session);
   }
 }
