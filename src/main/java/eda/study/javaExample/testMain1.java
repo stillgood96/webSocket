@@ -1,6 +1,6 @@
 package eda.study.javaExample;
 
-public class testMain {
+public class testMain1 {
   
   static class Parent {
     public Parent() {
