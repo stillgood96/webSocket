@@ -25,6 +25,7 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
   
   //webSocketSession을 담아두는 Map
 //  private final Set<WebSocketSession> buckets = ConcurrentHashMap.newKeySet();
+  /*
   @Override
   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     String payload = message.getPayload();
@@ -86,4 +87,6 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
 
     System.out.println("방금 메세지를 보낸 session = " + session);
   }
+  
+   */
 }

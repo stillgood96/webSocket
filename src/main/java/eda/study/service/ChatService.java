@@ -20,7 +20,8 @@ import org.springframework.web.socket.WebSocketSession;
 @RequiredArgsConstructor
 @Service
 public class ChatService {
-  
+  /*
+  * ChatRoomRepository가 대체 하기 때문에 사용하지 않음
   private final ObjectMapper objectMapper;
   private Map<String, ChatRoom> chatRooms;
   
@@ -54,4 +55,6 @@ public class ChatService {
       log.error(e.getMessage(), e);
     }
   }
+  
+   */
 }
