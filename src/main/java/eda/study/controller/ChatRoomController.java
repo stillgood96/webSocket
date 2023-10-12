@@ -25,7 +25,8 @@ public class ChatRoomController {
   // 채팅 리스트 화면
   @GetMapping("/room")
   public String rooms(Model model) {
-    return "/chat/room";
+    System.out.println(" 통신은 된다1");
+    return "room";
   }
   
   // 모든 채팅방 목록
@@ -46,7 +47,8 @@ public class ChatRoomController {
   @GetMapping("/room/enter/{roomId}")
   public String roomDetail(Model model, @PathVariable String roomId) {
     model.addAttribute("roomId", roomId);
-    return "/chat/roomdetail";
+    System.out.println(" 통신은 된다2");
+    return "roomdetail";
   }
   
   // 특정 채팅방 조회
