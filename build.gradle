@@ -31,12 +31,21 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-devtools'
 
-	//java에서 javascript를 사용학기 위해
+	/*
+	* java에서 javascript를 사용학기 위해
+	* webjar는 채팅 웹 화면을 구현하기 위해 필요한 js를 로드하기 위해 선언
+	 */
 	implementation 'org.webjars.bower:bootstrap:4.3.1'
 	implementation 'org.webjars.bower:vue:2.5.16'
 	implementation 'org.webjars.bower:axios:0.17.1'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	/*
+	* sockjs는 websocket를 지원하지 않는 skwdms 버전의 브라우저에서도 websocket를 사용할 수 있도록 해주는 라이브러리
+	 */
 	implementation 'org.webjars:sockjs-client:1.1.2'
+
 	implementation 'org.webjars:stomp-websocket:2.3.3-1'
+
 	implementation 'com.google.code.gson:gson:2.8.9'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

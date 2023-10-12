@@ -1,11 +1,18 @@
 spring:
   devtools:
-    livereload:
+    livereload: # intellij에서 static파일 을 개발 할 때 서버를 재시작 하지 않고도 수정한 내용이 반영 되도록
       enabled: true
     restart:
       enabled: false
   freemarker:
     cache: false
+  thymeleaf:
+    prefix: classpath:resources/templates/thymeleaf/
+    check-template-location: true
+    suffix: .html
+    mode: HTML
+    cache: false
+    enabled: true
 server:
   port: 8099
 
