@@ -1,11 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      th:fragment="HeaderFragment">
-</html>
 <!doctype html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      th:fragment="HeaderFragment">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="HeaderFragment">
 <head>
     <title>Websocket ChatRoom</title>
     <!-- Required meta tags -->
@@ -31,7 +25,7 @@
         </div>
         <input type="text" class="form-control" v-model="message" v-on:keypress.enter="sendMessage">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button" @click="sendMessage">보내기</button>
+            <button class="btn btn-primary" type="button" @click="sendMessage()">보내기</button>
         </div>
     </div>
     <ul class="list-group">
@@ -42,6 +36,7 @@
     <div></div>
 </div>
 <!-- JavaScript -->
+<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css">
 <script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 <script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
@@ -76,7 +71,7 @@
                 this.message = '';
             },
             recvMessage: function(recv) {
-                this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
+                this.messages.unshift({"type":recv.type,"sender":recv.type==='ENTER'?'[알림]':recv.sender,"message":recv.message})
             }
         }
     });
