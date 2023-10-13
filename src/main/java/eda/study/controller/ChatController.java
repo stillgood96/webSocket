@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/chat")
 public class ChatController {
@@ -29,9 +30,12 @@ public class ChatController {
   
   @MessageMapping("/message")
   public void message(ChatMessage message) {
-    if(ChatMessage.MessageType.JOIN.equals(message.getType())) {
+    
+    if(ChatMessage.MessageType.ENTER.equals(message.getType())) {
       message.setMessage(message.getSender() + "님이 입장하셨습니다.");
     }
+    
+    System.out.println("통신이 된다3");
     // 전달 받은 메세지를 브로드캐스트 방식으로 구독 중인 클라이언트들에게 뿌릴
     messagingTemplate.convertAndSend("/sub/chat/room" + message.getRoomId(), message);
   }

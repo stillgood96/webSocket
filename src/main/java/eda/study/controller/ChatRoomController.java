@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-// import 생략...
+import org.springframework.web.servlet.ModelAndView;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,11 +21,15 @@ public class ChatRoomController {
   
   private final ChatRoomRepository chatRoomRepository;
   
+  
+  
   // 채팅 리스트 화면
   @GetMapping("/room")
-  public String rooms(Model model) {
+  public ModelAndView rooms(Model model) {
     System.out.println(" 통신은 된다1");
-    return "room";
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("room");
+    return mav;
   }
   
   // 모든 채팅방 목록
@@ -45,10 +48,15 @@ public class ChatRoomController {
   
   // 채팅방 입장 화면
   @GetMapping("/room/enter/{roomId}")
-  public String roomDetail(Model model, @PathVariable String roomId) {
+  public ModelAndView roomDetail(Model model, @PathVariable String roomId) {
     model.addAttribute("roomId", roomId);
     System.out.println(" 통신은 된다2");
-    return "roomdetail";
+    
+    ModelAndView mav = new ModelAndView();
+//    mav.addObject(model);
+    mav.setViewName("roomdetail");
+    
+    return mav;
   }
   
   // 특정 채팅방 조회
