@@ -49,11 +49,12 @@ public class ChatRoomController {
   // 채팅방 입장 화면
   @GetMapping("/room/enter/{roomId}")
   public ModelAndView roomDetail(Model model, @PathVariable String roomId) {
-    model.addAttribute("roomId", roomId);
+//    model.addAttribute("roomId", roomId);
     System.out.println(" 통신은 된다2");
     
     ModelAndView mav = new ModelAndView();
-//    mav.addObject(model);
+    mav.addObject("room", model);
+    mav.addObject("roomId", roomId);
     mav.setViewName("roomdetail");
     
     return mav;
