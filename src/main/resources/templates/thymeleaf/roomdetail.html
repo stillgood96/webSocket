@@ -171,6 +171,7 @@
             },
             sendMessage: function() {
                 console.log("vm.data", this.$data)
+                console.log("messages",JSON.stringify(this.messages))
                 ws.send("/pub/chat/message", {}, JSON.stringify({type: 'TALK', roomId: this.roomId, sender: this.sender, message: this.message}));
                 this.message = '';
             },
