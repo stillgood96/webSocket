@@ -43,7 +43,7 @@ public class ChatController {
     
     System.out.println("통신이 된다3");
     // 전달 받은 메세지를 브로드캐스트 방식으로 구독 중인 클라이언트들에게 뿌림
-    messagingTemplate.convertAndSend("/sub/chat/room" + message.getRoomId(), message);
+    messagingTemplate.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
   }
   
   
